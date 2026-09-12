@@ -1,0 +1,160 @@
+              RAW DATA
+                 ↓
+          ┌──────────────┐
+          │   INSPECT    │
+          └──────┬───────┘
+                 ↓
+          ┌──────────────┐
+          │    SELECT    │
+          └──────┬───────┘
+                 ↓
+          ┌──────────────┐
+          │   FILTER     │
+          └──────┬───────┘
+                 ↓
+          ┌──────────────┐
+          │    CLEAN     │
+          └──────┬───────┘
+                 ↓
+          ┌──────────────┐
+          │   MODIFY     │
+          │  / ENGINEER  │
+          └──────┬───────┘
+                 ↓
+          ┌──────────────┐
+          │   ANALYZE    │
+          └──────┬───────┘
+                 ↓
+          ┌──────────────┐
+          │    MERGE     │
+          │   DATASETS   │
+          └──────┬───────┘
+                 ↓
+          CLEAN DATASET
+                 ↓
+        ┌─────────────────┐
+        │ MACHINE LEARNING│
+        └─────────────────┘
+# Pandas — ML Essentials
+
+```python
+import pandas as pd
+```
+
+### Core Concepts
+
+* Series → one column
+* DataFrame → table
+* Index → row labels
+* Column → feature/variable
+* Row → one observation
+
+### Load / Save
+
+```python
+df = pd.read_csv("data.csv")
+df = pd.read_excel("data.xlsx")
+df.to_csv("data.csv")
+```
+
+### Inspect
+
+```python
+df.head()
+df.tail()
+df.shape
+df.columns
+df.dtypes
+df.info()
+df.describe()
+```
+
+### Select
+
+```python
+df["column"]
+df[["col1", "col2"]]
+
+df.iloc[]
+df.loc[]
+```
+
+* `iloc` → position
+* `loc` → label
+
+### Filter
+
+```python
+df[df["column"] > value]
+
+df[(df["age"] > 20) & (df["salary"] > 50000)]
+df[(df["city"] == "Delhi") | (df["city"] == "Mumbai")]
+```
+
+* `&` → AND
+* `|` → OR
+
+### Missing Values
+
+```python
+df.isnull()
+df.isnull().sum()
+df.dropna()
+df.fillna(value)
+```
+
+### Duplicates
+
+```python
+df.duplicated()
+df.drop_duplicates()
+```
+
+### Modify
+
+```python
+df["new_column"] = ...
+df["column"] = ...
+df = df.drop(columns=["column"])
+df = df.rename(columns={"old": "new"})
+```
+
+### Statistics
+
+```python
+df["column"].mean()
+df["column"].median()
+df["column"].min()
+df["column"].max()
+df["column"].std()
+df["column"].sum()
+df["column"].value_counts()
+```
+
+### Manipulation
+
+```python
+df.sort_values("column")
+
+df.groupby("column")["value"].mean()
+
+pd.concat([df1, df2])
+
+pd.merge(df1, df2, on="id")
+```
+
+### ML Use
+
+```text
+Raw Data
+   ↓
+Inspect
+   ↓
+Select / Filter
+   ↓
+Clean
+   ↓
+Transform / Feature Engineering
+   ↓
+ML Model
+```
